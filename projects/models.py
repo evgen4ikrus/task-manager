@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Position(models.Model):
@@ -31,7 +32,8 @@ class Project(models.Model):
     ]
     title = models.CharField('Название', max_length=100)
     description = models.TextField('Описание', blank=True)
-    manager = models.ForeignKey('Employee', verbose_name='Руководитель', on_delete=models.CASCADE, related_name='managers')
+    manager = models.ForeignKey('Employee', verbose_name='Руководитель', on_delete=models.CASCADE,
+                                related_name='projects')
     status = models.CharField('Статус', max_length=10, choices=STATUSES)
 
     class Meta:
@@ -40,6 +42,9 @@ class Project(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse("project-detail", kwargs={"pk": self.pk})
 
 
 class Task(models.Model):
@@ -61,3 +66,6 @@ class Task(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse("task-detail", kwargs={"pk": self.pk})
