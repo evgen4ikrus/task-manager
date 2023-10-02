@@ -17,7 +17,7 @@
   <tr>
     <th scope="row">{{ project.id }}</th>
     <td>
-      <a href="{% url 'project-detail' pk=project.id %}" style="text-decoration: none;">{{ project.title }}</a>
+      <a href="{% url 'project-detail' pk=project.id %}" style="text-decoration: none;">{{project.title }}</a>
     </td>
     <td>{{ project.manager }}</td>
     <td>{{ project.get_status_display }}</td>

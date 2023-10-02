@@ -9,7 +9,7 @@
 
   <div class="col-md-4 alert alert-secondary">
     <h3>Из проекта: </h3>
-    <p>{{task.project.title}}</p>
+    <a href="{% url 'project-detail' pk=task.project.id %}" style="text-decoration: none;">{{ task.project.title }}</a>
     <h3>Описание: </h3>
     <p>{{task.description}}</p>
     <h3>Статус:</h3>
@@ -18,7 +18,7 @@
     <p>{{task.deadline}}</p>
   </div>
 
-  <div class="col-md-8">
+  <div class="col-md-8 px-4">
     <h3>Список сотрудников работающих над задачей:</h3>
     <table class="table table-striped table-hover">
       <thead>
@@ -37,6 +37,35 @@
       </tbody>
     </table>
   </div>
+
+</div>
+
+<div class="row">
+
+  <div class="col-md-4 alert alert-secondary">
+    <h3>Добавить комментарий:</h3>
+    <form action="" method="post" enctype=multipart/form-data>
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary">Отправить</button>
+    </form>
+  </div>
+
+  <div class="col-md-8 px-5">
+    {% if comments %}
+    <h3>Комментарии:</h3>
+    {% for comment in comments %}
+    <div class="row alert alert-light">
+      <h5>{{comment.author}}</h5>
+      <p>{{comment.text}}</p>
+      <p>{{comment.create_at}}</p>
+    </div>
+    {% endfor %}
+    {% else %}
+    <h3>Нет комментариев, добавьте новый...</h3>
+    {% endif %}
+  </div>
+
 
 </div>
 

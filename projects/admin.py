@@ -8,9 +8,8 @@ class PositionAdmin(admin.ModelAdmin):
     list_display = ('title', )
 
 
-@admin.register(Comment)
-class PositionAdmin(admin.ModelAdmin):
-    list_display = ('author', 'text')
+class CommentInline(admin.TabularInline):
+    model = Comment
 
 
 @admin.register(Employee)
@@ -30,3 +29,4 @@ class TaskAdmin(admin.ModelAdmin):
     list_display = ('title', 'project', 'deadline', 'status')
     list_filter = ('status', )
     search_fields = ('title', )
+    inlines = [CommentInline]
