@@ -30,7 +30,7 @@ class Project(models.Model):
         ('active', 'Активный'),
         ('inactive', 'Неактивный')
     ]
-    title = models.CharField('Название', max_length=100)
+    title = models.CharField('Название', max_length=100, db_index=True)
     description = models.TextField('Описание', blank=True)
     manager = models.ForeignKey('Employee', verbose_name='Руководитель', on_delete=models.CASCADE,
                                 related_name='projects')
@@ -53,7 +53,7 @@ class Task(models.Model):
         ('active', 'В работе'),
         ('completed', 'Завершена')
     ]
-    title = models.CharField('Название', max_length=100)
+    title = models.CharField('Название', max_length=100, db_index=True)
     description = models.TextField('Описание', blank=True)
     project = models.ForeignKey('Project', verbose_name='Проект', on_delete=models.CASCADE, related_name='tasks')
     deadline = models.DateTimeField('Выполнить до')
