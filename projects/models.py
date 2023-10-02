@@ -69,3 +69,18 @@ class Task(models.Model):
 
     def get_absolute_url(self):
         return reverse("task-detail", kwargs={"pk": self.pk})
+
+
+class Comment(models.Model):
+    text = models.TextField('Текст')
+    author = models.CharField('Автор', max_length=50)
+    task = models.ForeignKey('Task', verbose_name='Задача', on_delete=models.CASCADE, related_name='comments')
+    create_at = models.DateTimeField('Создан', auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'Комментарий'
+        verbose_name_plural = 'Комментарии'
+        ordering = ["-create_at"]
+
+    def __str__(self):
+        return self.text

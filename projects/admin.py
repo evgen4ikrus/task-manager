@@ -1,11 +1,16 @@
 from django.contrib import admin
 
-from .models import Employee, Position, Project, Task
+from .models import Comment, Employee, Position, Project, Task
 
 
 @admin.register(Position)
 class PositionAdmin(admin.ModelAdmin):
     list_display = ('title', )
+
+
+@admin.register(Comment)
+class PositionAdmin(admin.ModelAdmin):
+    list_display = ('author', 'text')
 
 
 @admin.register(Employee)
