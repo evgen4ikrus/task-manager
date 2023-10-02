@@ -1,5 +1,4 @@
 from django.contrib import admin
-from django.db.models import Prefetch
 
 from .models import Comment, Employee, Position, Project, Task
 
@@ -15,6 +14,11 @@ class CommentInline(admin.TabularInline):
 
 class TaskInline(admin.TabularInline):
     model = Task
+    raw_id_fields = ['performers']
+
+    def get_queryset(self, request):
+        queryset = super().get_queryset(request).prefetch_related('performers')
+        return queryset
 
 
 @admin.register(Employee)
