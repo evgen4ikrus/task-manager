@@ -20,7 +20,7 @@
       <a href="{% url 'project-detail' pk=project.id %}" style="text-decoration: none;">{{ project.title }}</a>
     </td>
     <td>{{ project.manager }}</td>
-    <td>{{ project.status }}</td>
+    <td>{{ project.get_status_display }}</td>
   </tr>
   {% endfor %}
   </tbody>

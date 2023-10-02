@@ -12,7 +12,7 @@
     <h3>Описание: </h3>
     <p>{{project.description}}</p>
     <h3>Статус:</h3>
-    <p>{{project.status}}</p>
+    <p>{{project.get_status_display}}</p>
   </div>
 
   <div class="col-8">
@@ -34,7 +34,7 @@
           <a href="{% url 'task-detail' pk=task.id %}" style="text-decoration: none;">{{task.title}}</a>
         </td>
         <td>{{task.deadline}}</td>
-        <td>{{task.status}}</td>
+        <td>{{task.get_status_display}}</td>
       </tr>
       {% endfor %}
       </tbody>

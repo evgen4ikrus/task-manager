@@ -49,7 +49,7 @@ class Project(models.Model):
 
 class Task(models.Model):
     STATUSES = [
-        ('new', 'Новый'),
+        ('new', 'Новая'),
         ('active', 'В работе'),
         ('completed', 'Завершена')
     ]
