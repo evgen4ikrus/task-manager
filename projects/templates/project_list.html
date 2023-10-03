@@ -1,8 +1,35 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<table class="table table-striped table-hover">
+<div class="row">
 
+  <div class="col-md-8 alert">
+    <h2>Проекты:</h2>
+  </div>
+
+  <div class="col-md-4 alert alert-secondary">
+    <h3>Фильтрация проектов:</h3>
+    <form action="{% url 'project-list' %}" method="get" enctype=multipart/form-data>
+      {% csrf_token %}
+      {{ form.as_p }}
+      <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="project_status">
+        <option value="all">Все</option>
+        {% for raw_status, status in statuses.items %}
+        {% if raw_status == requested_project_status %}
+        <option selected value="{{raw_status}}">{{status}}</option>
+        {% else %}
+        <option value="{{raw_status}}">{{status}}</option>
+        {% endif %}
+        {% endfor %}
+      </select>
+      <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-primary">Фильтровать</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<table class="table table-striped table-hover">
   <thead>
   <tr>
     <th scope="col">Id</th>

@@ -2,7 +2,7 @@
 {% block content %}
 
 <div class="row alert alert-secondary">
-  <h1>Задача: {{task.title}}</h1>
+  <h2>Задача: {{task.title}}</h2>
 </div>
 
 <div class="row">
@@ -18,7 +18,7 @@
     <p>{{task.deadline}}</p>
   </div>
 
-  <div class="col-md-8 px-4">
+  <div class="col-md-8 px-4 alert">
     <h3>Список сотрудников работающих над задачей:</h3>
     <table class="table table-striped table-hover">
       <thead>
@@ -47,11 +47,13 @@
     <form action="" method="post" enctype=multipart/form-data>
       {% csrf_token %}
       {{ form.as_p }}
-      <button type="submit" class="btn btn-primary">Отправить</button>
+      <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-primary">Отправить</button>
+      </div>
     </form>
   </div>
 
-  <div class="col-md-8 px-5">
+  <div class="col-md-8 px-5 alert">
     {% if comments %}
     <h3>Комментарии:</h3>
     {% for comment in comments %}
